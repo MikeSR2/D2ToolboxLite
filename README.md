@@ -12,6 +12,7 @@ mx -> spanish latinamerica
 why 2 spanish versions? well the name of the weapons changes between spanish from spain and spanish from latinamerica (which was dubbed in mexico)
 
 The flow is like this:
-The user sends the command to discord, it will make some validations regarding the given parameters, then it will get the hash from the destiny2.sqlite3 database , which is extracted from the destiny 2 manifiest.
+The user sends the command to discord, it will make some validations regarding the given parameters, then it will get the hash from the destiny2.sqlite3 database , which is extracted from the destiny 2 manifiest. These files should be places under the db folder
 Given this hash or id, it will build the url for consulting an another website (light.gg) where the rolls information comes from. 
 I used puppeteer to go to that web site, make an screenshot of the information we need, then send it back to discord.
+
