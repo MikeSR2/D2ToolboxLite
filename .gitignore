@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+#sqlite db
+*.sqlite3-journal
+*.sqlite3
