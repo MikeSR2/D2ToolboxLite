@@ -11,7 +11,7 @@ const Discord = require("discord.js")
  * @param {object} msg
  */
 async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer,msg){
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setViewport({
     width: viewPortWidth,

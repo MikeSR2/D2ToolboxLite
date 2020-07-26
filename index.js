@@ -1,7 +1,4 @@
 const Discord = require("discord.js")
-const PropertiesReader = require('properties-reader');
-const prop=PropertiesReader('properties/env.properties');
-const token=prop.get('app.token');
 const main=require('./main.js');
 const utility=require('./utils/utility.js');
 const logger = require('./utils/logger.js');
@@ -41,4 +38,4 @@ client.on("message", msg => {
 
 
 })
-client.login(token)
+client.login(process.env.DISCORD_TOKEN)

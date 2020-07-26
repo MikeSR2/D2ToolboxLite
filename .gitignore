@@ -107,3 +107,6 @@ dist
 #sqlite db
 *.sqlite3-journal
 *.sqlite3
+
+#test 
+tmp/godroll.png

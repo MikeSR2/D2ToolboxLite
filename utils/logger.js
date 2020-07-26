@@ -2,9 +2,7 @@
  * simple logger
  */
 const winston = require('winston');
-const PropertiesReader = require('properties-reader');
-const prop=PropertiesReader('./properties/env.properties');
-var logLevel=prop.get('app.logger.level');
+var logLevel=process.env.APP_LOGGER_LEVEL;
 
 
 const myformat = winston.format.combine(
