@@ -1,6 +1,6 @@
 # D2ToolboxLite
-Thi is just a small project I build for practicing some JavaScript and this is my first node js.
-A simple bot for discord that looks for the god roll of a given weapon name from Destiny 2 
+Thi is just a small project I build for practicing some JavaScript and this is my first node js project.
+A simple bot for discord that looks for the god roll of a given weapon name from Destiny 2. 
 Only 2 commands available for now:
 he!p : ask for some help regarding the usage of the bot
 !godRoll weapon name/language : looks for the given weapon name in the given language and retrieve the rolls for that weapon.
