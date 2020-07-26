@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer');
 const logger = require('../utils/logger.js');
 const Discord = require("discord.js")
+const constants = require('../utils/constants.js');
+
 
 /**
  * Take the screenshot given an url and send it back to the channel
@@ -9,8 +11,9 @@ const Discord = require("discord.js")
  * @param {number} viewPortHeight 
  * @param {String} contentContainer 
  * @param {object} msg
+ * @param {String} itemName
  */
-async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer,msg){
+async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer,msg,itemName){
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setViewport({
@@ -26,10 +29,10 @@ async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer
   if (result.status()!=200){
     logger.error('lightggconsumer.takeScreenshot() :: Error code: '+result.status());
     const responseEmbed = new Discord.MessageEmbed()
-    .setColor('#8B0000')
-    .setTitle('Error')
-    .setDescription('Error, verify your spelling and try again, report to the admin if the error persists')
-    .setFooter('GodRoll repository (beta)');
+    .setColor(constants.discordEmbedColorErr)
+    .setTitle(constants.discordErrorTitle)
+    .setDescription(constants.discordErrorSearch)
+    .setFooter(constants.discordFooter);
     await msg.channel.send(responseEmbed);
     await browser.close();
     return;
@@ -49,7 +52,16 @@ async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer
   await page.screenshot({path: './tmp/godroll.png'});
   logger.info('lightggconsumer.takeScreenshot() :: screenshot generated');
   //reply to the channel
-  await msg.channel.send("Info obtained from light.gg",{files: ["./tmp/godroll.png"]});
+
+
+ 
+  const responseRoll = new Discord.MessageEmbed()
+    .setColor(constants.discordEmbedColorNormal)
+    .setTitle(constants.discordResponse+' '+itemName)
+    .setFooter(constants.discordFooter)
+    .attachFiles(['./tmp/godroll.png'])
+	  .setImage('attachment://godroll.png');
+  await msg.channel.send(responseRoll);
   logger.info('lightggconsumer.takeScreenshot() :: message sent!');
   await browser.close();
 };

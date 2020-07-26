@@ -3,6 +3,7 @@ const screenshot=require('./datasource/lightggconsumer.js');
 const datasource=require('./datasource/sqldata.js');
 const logger = require('./utils/logger.js');
 const Discord = require("discord.js")
+const constants = require('./utils/constants.js');
 
 
 
@@ -20,23 +21,23 @@ function init(itemName,languaje,msg){
         if(results==404){
             logger.error('main.init() :: item not found in the database ');
             const responseEmbed = new Discord.MessageEmbed()
-            .setColor('#8B0000')
-            .setTitle('Error')
-            .setDescription('The item was not found in the database, verify your spelling and try again')
-            .setFooter('GodRoll repository (beta)');
+            .setColor(constants.discordEmbedColorErr)
+            .setTitle(constants.discordErrorTitle)
+            .setDescription(constants.discordErrorNotFound)
+            .setFooter(constants.discordFooter);
             msg.channel.send(responseEmbed);
         }else{
             const url=utility.buildUrl(results);
-            screenshot.takeScreenshot(url,viewPortWidth,viewPortHeight,contentContainer,msg);
+            screenshot.takeScreenshot(url,viewPortWidth,viewPortHeight,contentContainer,msg,itemName);
         }
        })
        .catch(function(err){
         logger.error('main.init() :: there was an error while performing the DB call: '+err);
         const responseEmbed = new Discord.MessageEmbed()
-        .setColor('#8B0000')
-        .setTitle('Error')
-        .setDescription('Error while executing the command, contact the admin if the error persists')
-        .setFooter('GodRoll repository (beta)');
+        .setColor(constants.discordEmbedColorErr)
+        .setTitle(constants.discordEmbedColorErr)
+        .setDescription(constants.discordErrorDbError)
+        .setFooter(constants.discordFooter);
         msg.channel.send(responseEmbed);
        })
 

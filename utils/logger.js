@@ -2,7 +2,7 @@
  * simple logger
  */
 const winston = require('winston');
-var logLevel=process.env.APP_LOGGER_LEVEL;
+var logLevel="debug";
 
 
 const myformat = winston.format.combine(

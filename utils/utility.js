@@ -61,6 +61,12 @@ function validateInput(input){
     logger.info('utility.validateInput() :: the user sent: '+input);
     var divd=[];
     var msg = input.substring(9,input.size);
+
+    if(msg.length==0){
+        logger.info('utility.validateInput() :: missing arguments');
+        return -2;
+    }
+
     if (msg.includes('/')){
         divd=msg.split('/');
         if(divd[1].length==0){
