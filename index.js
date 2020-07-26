@@ -46,4 +46,4 @@ client.on("message", msg => {
 
 
 })
-client.login("NzM2Mzk2Njc1MzQ5ODcyNzMx.XxuM2A.LLdX_UD7us8ejoHglKkaXoJLwqw");
+client.login(process.env.DISCORD_TOKEN);
