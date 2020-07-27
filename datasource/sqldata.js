@@ -33,8 +33,7 @@ const logger = require('../utils/logger.js');
 
 
     return new Promise(function(resolve,reject) {
-      var query=`select json from DestinyInventoryItemDefinition where json like '%"name":"{}"%' ORDER BY id ASC LIMIT 1;`;
-      query=query.replace('{}',itemName);
+      var query=utility.buildQuery(languaje,itemName);
       logger.debug("sqldata.executeQuery() :: query a ejecutar: "+query);
       db.get(query, function(err, row)  {
       if (err) {
@@ -47,7 +46,7 @@ const logger = require('../utils/logger.js');
       }else{
         logger.debug("sqldata.executeQuery() :: query result: "+row.json);
         var jsonObj=JSON.parse(row.json);
-        var hash=jsonObj.translationBlock.arrangements[0].artArrangementHash;
+        var hash=jsonObj.hash;
         logger.info("sqldata.executeQuery() :: query executed! result: "+hash);
         resolve(hash);
 
@@ -60,6 +59,9 @@ const logger = require('../utils/logger.js');
 
 
 }
+
+
+
 
 
 module.exports = {

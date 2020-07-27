@@ -43,9 +43,11 @@ async function takeScreenshot (url,viewPortWidth,viewPortHeight,contentContainer
   logger.info('lightggconsumer.takeScreenshot() :: url loaded');
   //remove ads from page
   await page.evaluate(() => {
-    let example = document.querySelector('#video');
+    let add1 = document.querySelector('#video');
+    let add2 = document.querySelector('.after-perks-ad'); 
   
-    example.parentNode.removeChild(example);
+    add1.parentNode.removeChild(add1);
+    add2.parentNode.removeChild(add2);
   }); 
 
   //take screenshot and save it

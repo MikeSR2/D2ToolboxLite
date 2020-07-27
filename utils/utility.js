@@ -73,6 +73,7 @@ function validateInput(input){
             divd[1]='en';
             logger.info('utility.validateInput() :: english selected as default languaje');
         }else{
+            divd[1]=divd[1].toLowerCase();
             if(divd[1]!='en' && divd[1]!='es' && divd[1]!='mx'){
                 logger.info('utility.validateInput() :: user typed an invalid languaje');
                 return -1;
@@ -97,12 +98,28 @@ function validateInput(input){
     return divd;
 }
 
+/**
+ * Build the sql query
+ * @param {string} languaje 
+ * @param {string} itemName 
+ */
+function buildQuery(languaje,itemName){
+    var param2=prop.get('app.query.random.'+languaje);
+    var query=`select json from DestinyInventoryItemDefinition where json like '%"name":"{name}"%' and json like '%"{lang}"%'  ORDER BY id ASC LIMIT 1;`;
+    query=query.replace('{name}',itemName);
+    query=query.replace('{lang}',param2);
+
+    return query;
+  }
+  
+
 module.exports = {
     retrieveDB,
     buildUrl,
     getContainerName,
     getScreenViewPortHeight,
     getScreenViewPortWidth,
-    validateInput
+    validateInput,
+    buildQuery
 
   };
