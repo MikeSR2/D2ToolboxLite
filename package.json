@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "properties-reader": "^2.0.0",
+    "properties-reader": "^2.2.0",
     "puppeteer": "^5.2.1",
     "sqlite3": "^5.0.0",
     "winston": "^3.3.3"
